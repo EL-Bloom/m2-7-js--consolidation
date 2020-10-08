@@ -2,33 +2,6 @@
 //
 // Write a function will transform the inputData object into a new shape (As provided below.)
 
-const inputData = {
-  name: "Will Byers",
-  age: 9,
-  status: "upside down",
-  superpower1: "can-blink-lights",
-  superpower2: null,
-  address1: "123 Whatever street",
-  addressCity: "Hawkins",
-  addressState: "Indiana",
-  addressCountry: "United States",
-  motherName: "Joyce Byers",
-  motherAge: 35,
-  motherStatus: "worried",
-  motherSuperpower1: null,
-  motherSuperpower2: null,
-  bestFriendName: "Mike Wheeler",
-  bestFriendAge: 9,
-  bestFriendStatus: "frenetic",
-  bestFriendSuperpower1: null,
-  bestFriendSuperpower2: null,
-  girlfriendName: "Eleven",
-  girlfriendAge: 9,
-  girlfriendStatus: "angry",
-  girlfriendSuperpower1: "telepathy",
-  girlfriendSuperpower2: "multiverse portal sealing",
-};
-
 // We want a function that can transform it from that shape to this shape:
 //
 // {
@@ -79,10 +52,86 @@ const inputData = {
 // For example, the main superpowers array should be:
 // ✅ ['can-blink-lights']
 // ⛔️ ['can-blink-lights', null]
+const inputData = {
+  name: "Will Byers",
+  age: 9,
+  status: "upside down",
+  superpower1: "can-blink-lights",
+  superpower2: null,
+  address1: "123 Whatever street",
+  addressCity: "Hawkins",
+  addressState: "Indiana",
+  addressCountry: "United States",
+  motherName: "Joyce Byers",
+  motherAge: 35,
+  motherStatus: "worried",
+  motherSuperpower1: null,
+  motherSuperpower2: null,
+  bestFriendName: "Mike Wheeler",
+  bestFriendAge: 9,
+  bestFriendStatus: "frenetic",
+  bestFriendSuperpower1: null,
+  bestFriendSuperpower2: null,
+  girlfriendName: "Eleven",
+  girlfriendAge: 9,
+  girlfriendStatus: "angry",
+  girlfriendSuperpower1: "telepathy",
+  girlfriendSuperpower2: "multiverse portal sealing",
+};
+
 
 function transformData(data) {
-  // Your code here
+
+
+
+function getSuperpowers(power1, power2) {
+  let powersArray = [];
+
+  if (power1) {
+    powersArray.push(power1);
+  }
+  if (power2) {
+    powersArray.push(power2);
+  }
+
+  return powersArray;
+
 }
+let outputData = {
+  name: data.name,
+  age: data.age,
+  status: data.status,
+  address: {
+    streetAddress: data.address1,
+    city: data.addressCity,
+    state: data.addressState,
+    country: data.addressCountry,
+  },
+};
+let mother = {
+  type: "mother",
+  name: data.motherName,
+  age: data.motherAge,
+  status: data.motherStatus,
+  superpowers: getSuperpowers(data.motherSuperpower1, data.motherSuperpower2),
+};
+let girlfriend = {
+  type: "girlfriend",
+  name: data.girlfriendName,
+  age: data.girlfriendAge,
+  status: data.girlfriendStatus,
+  superpowers: getSuperpowers(
+    data.girlfriendSuperpower1,
+    data.girlfriendSuperpower2
+  ),
+};
+
+outputData.relationships = [mother, girlfriend];
+
+return outputData;
+} 
+console.log(transformData(inputData));
+
 
 // Use a console.log to verify
 // `JSON.stringify` is used to "pretty-print" the output, so that it's easy

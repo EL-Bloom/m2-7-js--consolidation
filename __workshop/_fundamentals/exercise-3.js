@@ -18,7 +18,7 @@ const favoriteDessertsGroupA = {
   rick: "brownies",
   andrew: "cheese cake",
   jerry: "rhubard pie",
-  "jean-luc": "cheese cake",
+  jean_luc: "cheese cake",
   tiffany: "waffles",
   melissa: "profiteroles",
 };
@@ -61,8 +61,25 @@ const favoriteDessertsGroupB = {
 // }
 
 function groupByValue(obj) {
-  // do something
+
+  let desserts = {};
+  let values = Object.values(obj);
+  values = values.filter((item, i) => i == values.indexOf(item));
+
+  values.forEach((item) => {
+    desserts[item] = [];
+  });
+
+  let keyArr = Object.keys(obj);
+
+  keyArr.forEach((item) => {
+    let treat = obj[item];
+    desserts[treat].push(item);
+  });
+
+  return desserts;
 }
+
 
 // Verification via console.log()
 console.log("Group A", groupByValue(favoriteDessertsGroupA));

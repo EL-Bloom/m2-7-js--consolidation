@@ -18,7 +18,7 @@ const favoriteDessertsGroupA = {
   rick: "brownies",
   andrew: "cheese cake",
   jerry: "rhubard pie",
-  "jean-luc": "cheese cake",
+  jeanluc: "cheese cake",
   tiffany: "waffles",
   melissa: "profiteroles",
 };
@@ -53,8 +53,25 @@ const favoriteDessertsGroupB = {
 // Your function should work with both objects and any other objects of the same shape.
 
 function sortByPopularity(obj) {
-  // Write code
+
+  let desserts = Object.values(obj);
+
+  desserts.sort();
+
+  let ranked = desserts.sort((a, b) => {
+    return (
+      desserts.indexOf(a) -
+      desserts.lastIndexOf(a) -
+      (desserts.indexOf(b) - desserts.lastIndexOf(b))
+    );
+  });
+
+  let singleRank = ranked.filter((item, i) => i == ranked.lastIndexOf(item));
+
+  return singleRank;
 }
+
+
 
 // Verification via console.log()
 console.log(
